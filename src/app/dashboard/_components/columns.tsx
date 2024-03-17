@@ -33,7 +33,7 @@ export const columns: ColumnDef<Doc<"files"> & { isFavorited: boolean }>[] = [
     header: "Type",
   },
   {
-    header: "User",
+    header: "Uploaded By",
     cell: ({ row }) => {
       return <UserCell userId={row.original.userId} />;
     },

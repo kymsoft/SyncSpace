@@ -6,7 +6,7 @@ import { IoArrowBack } from "react-icons/io5";
 const BackButton = () => {
     const router = useRouter();
   return (
-    <button>
+    <button className='ml-5'>
         <IoArrowBack className='btn text-xl' onClick={() => router.back()} />
     </button>
   )

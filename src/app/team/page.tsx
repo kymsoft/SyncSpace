@@ -10,12 +10,19 @@ import {
 import { FacebookIcon, InstagramIcon, LinkedinIcon, TelegramIcon, WhatsappIcon } from "next-share";
 import Image from "next/image";
 import Link from "next/link";
+import BackButton from "../dashboard/_components/back-button";
+import { SubNavigation } from "../dashboard/_components/sub-nav";
 
 
 export default function Team(){
     return(
+      <div>
+        <div className="w-full flex justify-center items-center">
+        <SubNavigation />
+      </div>
+      <BackButton/>
         <div className="mt-30">
-        <h1 className="text-center my-5">Team</h1>
+        <h1 className="text-center text-xl my-5">Team</h1>
         <div className="text-center w-full justify-center items-center flex">
           <div className="grid items-center justify-center md:grid-cols-2 lg:grid-cols-3 gap-2 p-3">
             <Card className="w-[350px] bg-secondary mr-2">
@@ -55,7 +62,7 @@ export default function Team(){
                 <CardTitle>
                     <div className="w-full flex justify-center items-center">
                         <Image 
-                          src="/assets/giphy.gif"
+                          src="/assets/Ileri.jpg"
                           alt="profile image"
                           height={150}
                           width={150}
@@ -87,7 +94,7 @@ export default function Team(){
                 <CardTitle>
                     <div className="w-full flex justify-center items-center">
                         <Image 
-                          src="/assets/giphy.gif"
+                          src="/assets/Meke.jpg"
                           alt="profile image"
                           height={150}
                           width={150}
@@ -117,5 +124,7 @@ export default function Team(){
           </div>
         </div>
       </div>
+      </div>
+      
     )
 }

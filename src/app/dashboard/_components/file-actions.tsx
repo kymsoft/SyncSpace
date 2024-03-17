@@ -54,14 +54,7 @@ import {
   TelegramShareButton,
   TelegramIcon,
 } from "next-share";
-import { IoLogoWhatsapp } from "react-icons/io";
 
-const shareDetails = {
-  title: "",
-  url: "",
-  imageUrl: "",
-  summary: "",
-};
 
 export function FileCardActions({
   file,
@@ -197,14 +190,7 @@ export function FileCardActions({
             </DialogContent>
           </Dialog>
 
-          <DropdownMenuItem
-            onClick={() => {
-              window.open(getFileUrl(file.fileId), "_blank");
-            }}
-            className="flex gap-1 items-center cursor-pointer"
-          >
-            <FilePenLine className="w-4 h-4" /> Edit
-          </DropdownMenuItem>
+          
 
           <Protect
             condition={(check) => {
@@ -216,6 +202,14 @@ export function FileCardActions({
             }}
             fallback={<></>}
           >
+            <DropdownMenuItem
+            onClick={() => {
+              window.open(getFileUrl(file.fileId), "_blank");
+            }}
+            className="flex gap-1 items-center cursor-pointer"
+          >
+            <FilePenLine className="w-4 h-4" /> Edit
+          </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => {

@@ -25,30 +25,30 @@ const components: { title: string; href: string; description: string }[] = [
     title: "Customizable Workspace",
     href: "/docs/features/customizable-workspace",
     description:
-      "For sighted users to preview content available behind a link.",
+      "Syncspace provides a customizable and reliable workspace for its users.",
   },
   {
-    title: "Create Organization Spaces",
+    title: "Create Organization",
     href: "/docs/features/create-space",
     description:
-      "Organization Spaces consist of collections of related files and user groups",
+      "Organizations consist of collections of related files and user groups",
   },
   {
     title: "Boost Project Productivity",
     href: "/docs/features/productivity",
-    description: "Visually or semantically separates content.",
+    description: "Maximize project productivity and enhance teamwork efficiency.",
   },
   {
     title: "Collaboration at its best",
     href: "/docs/features/collaboration",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "Share and manage files with fellow collegues, peers and teammates on SyncSpace.",
   },
   {
     title: "Document Security with Clerk",
     href: "/docs/features/security",
     description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "Syncspace offers tight user security with Clerk Authentication. Protect your files on SyncSpace today.",
   },
 ];
 
@@ -77,13 +77,13 @@ export function SubNavigation() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
+              <ListItem href="/docs/introduction" title="Introduction">
                 Syncspace is a collaborative platform for seamless document management and sharing.
               </ListItem>
-              <ListItem href="/docs" title="User Authentication">
+              <ListItem href="/docs/introduction" title="User Authentication">
                 Security at its strongest with Clerk Authentication.
               </ListItem>
-              <ListItem href="/docs" title="Customization">
+              <ListItem href="/docs/introduction" title="Customization">
                 Enjoy easy User-Friendly Customization on Workspace
               </ListItem>
             </ul>
@@ -106,7 +106,7 @@ export function SubNavigation() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs/team" legacyBehavior passHref>
+          <Link href="/team" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Development Team
             </NavigationMenuLink>

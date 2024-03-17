@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import BackButton from "../dashboard/_components/back-button";
 import { SubNavigation } from "../dashboard/_components/sub-nav";
+import { SideNavigation } from "./sidebar";
 
 export const metadata: Metadata = {
   title: {
@@ -21,8 +22,17 @@ export default function DashboardLayout({
       </div>
 
       <div className="w-full m-5">
-        <BackButton/>
-        {children}
+        <div className="flex">
+          <div className="">
+            <SideNavigation/>
+          </div>
+          <div>
+           <BackButton/>
+          </div>
+          <div>
+          {children}
+          </div>
+        </div>
         </div>
     </div>
   );

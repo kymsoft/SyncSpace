@@ -7,11 +7,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
-export function SideNav() {
+export function SideNavigation() {
   const pathname = usePathname();
 
   return (
-    <div className="w-40 flex flex-col gap-4 p-2 ">
+    <div className="md:w-60 hidden md:block flex flex-col gap-4 p-2">
       <Link href="/dashboard/files">
         <Button
           variant={"link"}
@@ -19,7 +19,7 @@ export function SideNav() {
             "text-blue-500": pathname.includes("/dashboard/files"),
           })}
         >
-          <FileIcon /> All Files
+          Introduction
         </Button>
       </Link>
 
@@ -30,7 +30,7 @@ export function SideNav() {
             "text-blue-500": pathname.includes("/dashboard/favorites"),
           })}
         >
-          <StarIcon /> Favorites
+          Features
         </Button>
       </Link>
 
@@ -41,7 +41,7 @@ export function SideNav() {
             "text-blue-500": pathname.includes("/dashboard/trash"),
           })}
         >
-          <TrashIcon /> Trash
+          FAQ
         </Button>
       </Link>
     </div>

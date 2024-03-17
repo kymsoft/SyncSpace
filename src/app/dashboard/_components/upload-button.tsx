@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useOrganization, useUser } from "@clerk/nextjs";
+import { Protect, useOrganization, useUser } from "@clerk/nextjs";
 import {
   Form,
   FormControl,
@@ -72,8 +72,12 @@ export function UploadButton() {
       "image/png": "image",
       "application/pdf": "pdf",
       "text/csv": "csv",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
-      "application/vnd.openxmlformats-officedocument.presentationml.presentation": "pptx",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        "docx",
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation":
+        "pptx",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+        "xlsx",
     } as Record<string, Doc<"files">["type"]>;
 
     try {
@@ -112,68 +116,84 @@ export function UploadButton() {
   const createFile = useMutation(api.files.createFile);
 
   return (
-    <Dialog
-      open={isFileDialogOpen}
-      onOpenChange={(isOpen) => {
-        setIsFileDialogOpen(isOpen);
-        form.reset();
+    <Protect
+      condition={(check) => {
+        return (
+          check({
+            role: "org:admin",
+          }) || !organization.organization
+        );
       }}
+      fallback={<></>}
     >
-      <DialogTrigger asChild>
-        <Button className="bg-[#4942E4] rounded-lg hover:bg-[#0C0960] text-white">Upload File</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle className="mb-8">Upload your File Here</DialogTitle>
-          <DialogDescription>
-            This file will be accessible by anyone in your organization
-          </DialogDescription>
-        </DialogHeader>
+      <Dialog
+        open={isFileDialogOpen}
+        onOpenChange={(isOpen) => {
+          setIsFileDialogOpen(isOpen);
+          form.reset();
+        }}
+      >
+        <DialogTrigger asChild>
+          <Button className="bg-[#4942E4] rounded-lg hover:bg-[#0C0960] text-white">
+            Upload File
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="mb-8">Upload your File Here</DialogTitle>
+            <DialogDescription>
+              This file will be accessible by anyone in your organization
+            </DialogDescription>
+          </DialogHeader>
 
-        <div>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="file"
-                render={() => (
-                  <FormItem>
-                    <FormLabel>File</FormLabel>
-                    <FormControl>
-                      <Input type="file" {...fileRef} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="submit"
-                disabled={form.formState.isSubmitting}
-                className="flex gap-1"
+          <div>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
               >
-                {form.formState.isSubmitting && (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                )}
-                Submit
-              </Button>
-            </form>
-          </Form>
-        </div>
-      </DialogContent>
-    </Dialog>
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="file"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>File</FormLabel>
+                      <FormControl>
+                        <Input type="file" {...fileRef} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="submit"
+                  disabled={form.formState.isSubmitting}
+                  className="flex gap-1"
+                >
+                  {form.formState.isSubmitting && (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  )}
+                  Submit
+                </Button>
+              </form>
+            </Form>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </Protect>
   );
 }

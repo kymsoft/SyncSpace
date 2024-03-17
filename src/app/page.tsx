@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { SubNavigation } from "./dashboard/_components/sub-nav";
@@ -11,8 +13,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useEffect } from "react";
+
+
 
 export default function LandingPage() {
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+  
+  }, []);
+  const theme = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
+  
   return (
     <div className="">
       <div className="w-full flex justify-center items-center">
@@ -49,8 +61,18 @@ export default function LandingPage() {
         <h1 className="text-center my-5">Features</h1>
         <div className="text-center w-full justify-center items-center flex">
           <div className="grid items-center justify-center md:grid-cols-2 lg:grid-cols-3 gap-2 p-3">
-            <Card className="w-[350px] h-[280px] bg-secondary mr-2">
+            <Card className="w-[350px] bg-secondary mr-2">
               <CardHeader>
+                <div className="flex w-full justify-center items-center">
+                <Image 
+                   src="/assets/file.png"
+                   alt="file"
+                   height={40}
+                   width={40}
+                   className="text-center"
+                />
+                </div>
+                
                 <CardTitle>Manage Documents</CardTitle>
                 <CardDescription>
                   Upload and share local document 
@@ -64,8 +86,17 @@ export default function LandingPage() {
                 <Link href="/docs/features" className="text-right" >See More</Link>
               </CardFooter>
             </Card>
-            <Card className="w-[350px] h-[280px] bg-secondary mr-2">
+            <Card className="w-[350px] bg-secondary mr-2">
               <CardHeader>
+              <div className="flex w-full justify-center items-center">
+                <Image 
+                   src="/assets/collab.png"
+                   alt="collab"
+                   height={40}
+                   width={40}
+                   className="text-center"
+                />
+                </div>
                 <CardTitle>Collaboration made easy</CardTitle>
                 <CardDescription>
                   Increase project productivity in one click
@@ -79,8 +110,17 @@ export default function LandingPage() {
                 <Link href="/docs/features" className="text-right" >See More</Link>
               </CardFooter>
             </Card>
-            <Card className="w-[350px] h-[280px] bg-secondary">
+            <Card className="w-[350px] bg-secondary">
               <CardHeader>
+              <div className="flex w-full justify-center items-center">
+                <Image 
+                   src="/assets/padlock.png"
+                   alt="lock"
+                   height={40}
+                   width={40}
+                   className="text-center"
+                />
+                </div>
                 <CardTitle>Document Security</CardTitle>
                 <CardDescription>
                  Clerk Authentication for Security
@@ -113,13 +153,16 @@ export default function LandingPage() {
               <p className="text-center">Workspace</p>
             </div>
             <div className=" w-full justify-center items-center flex">
-              <Image
-                src="/assets/work.png"
+              
+                <Image
+                src="/assets/workspace-dark.png"
                 alt="Workspace"
                 width={1000}
                 height={1000}
                 className="border rounded-lg"
               />
+               
+              
             </div>
           </div>
         </div>

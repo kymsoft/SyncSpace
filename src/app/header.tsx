@@ -35,7 +35,7 @@ export function Header() {
 
 useEffect(() => {
   const theme = localStorage.getItem('theme');
-  // rest of your code
+  
 }, []);
 const theme = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
 
