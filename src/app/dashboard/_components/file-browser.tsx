@@ -122,6 +122,7 @@ export function FileBrowser({
                 <SelectItem value="pdf">PDF</SelectItem>
                 <SelectItem value="docx">DOCX</SelectItem>
                 <SelectItem value="pptx">PPTX</SelectItem>
+                <SelectItem value="xlsx">XLSX</SelectItem>
               </SelectContent>
             </Select>
           </div>

@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatRelative } from "date-fns";
 
 import { Doc } from "../../../../convex/_generated/dataModel";
-import { FileTextIcon, GanttChartIcon, ImageIcon } from "lucide-react";
+import { FileSpreadsheet, FileTextIcon, GanttChartIcon, ImageIcon } from "lucide-react";
 import { ReactNode } from "react";
 import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
@@ -32,6 +32,7 @@ export function FileCard({
     csv: <GanttChartIcon />,
     docx: <IoDocumentsOutline />,
     pptx: <IoDocumentAttachOutline />,
+    xlsx: <FileSpreadsheet />,
   } as Record<Doc<"files">["type"], ReactNode>;
 
   return (
@@ -59,6 +60,7 @@ export function FileCard({
         {file.type === "pdf" && <FileTextIcon className="w-20 h-20" />}
         {file.type === "docx" && <IoDocumentsOutline className="w-20 h-20" />}
         {file.type === "pptx" && <IoDocumentAttachOutline className="w-20 h-20" />}
+        {file.type === "xlsx" && <FileSpreadsheet className="w-20 h-20" />}
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex gap-2 text-xs text-gray-700 w-40 items-center">
