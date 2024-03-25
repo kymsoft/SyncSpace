@@ -1,7 +1,7 @@
 export default {
   providers: [
     {
-      domain: "https://excited-bee-27.clerk.accounts.dev",
+      domain: `https://${process.env.CLERK_HOSTNAME}`,
       applicationID: "convex",
     },
   ],
